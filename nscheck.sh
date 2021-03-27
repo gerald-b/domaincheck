@@ -16,4 +16,17 @@ do
 		done
 	done
 done
+for x1 in {a..z}
+do
+	for x2 in {00..99}
+	do
+		tgt=${x1}${x2}.de
+		#echo ${tgt}
+		thostq=$(host ${tgt} | grep NXDOMAIN | wc -l)
+		# echo ${thostq}
+		if [ "${thostq}" -eq "1" ]; then
+			echo ${tgt}
+		fi
+	done
+done
 echo END
