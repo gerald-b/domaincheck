@@ -46,10 +46,12 @@ function check()
         thostq=$(host ${tgt} | grep NXDOMAIN | wc -l)
         # echo ${thostq}
         if [ "${thostq}" -eq "1" ]; then
-                echo .
-                echo ${tgt}
-                # echo $(whois ${tgt}| grep -i "status:" -A1)
-                echo $(whois ${tgt}| grep -i "status: ")
+                echo -n .
+                # echo ${tgt}
+                twhoisq=$(whois ${tgt}| grep -i "status: free" | wc -l)
+                if [ "${twhoisq}" -eq "1" ]; then
+                    echo -n " ${tgt} "
+                fi
         else
                 echo -n .
         fi
