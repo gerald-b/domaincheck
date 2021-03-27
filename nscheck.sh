@@ -40,8 +40,7 @@ do
 done
 echo .
 echo END
-echo checked: $countTotal
-echo found free: $countFree
+echo summary: $countFree free / $countTotal checked
 }
 
 function check()
