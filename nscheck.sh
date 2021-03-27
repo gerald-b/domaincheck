@@ -1,6 +1,7 @@
 #!/bin/bash
 
 countTotal=0
+countFree=0
 
 function main()
 {
@@ -40,6 +41,7 @@ done
 echo .
 echo END
 echo checked: $countTotal
+echo found free: $countFree
 }
 
 function check()
@@ -55,6 +57,7 @@ function check()
                 twhoisq=$(whois ${tgt}| grep -i "status: free" | wc -l)
                 if [ "${twhoisq}" -eq "1" ]; then
                     echo -n " ${tgt} "
+                    let countFree++
                 fi
         else
                 echo -n .
