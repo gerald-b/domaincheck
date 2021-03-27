@@ -1,5 +1,7 @@
 #!/bin/bash
 
+countTotal=0
+
 function main()
 {
 for x1 in {a..z}
@@ -37,10 +39,12 @@ do
 done
 echo .
 echo END
+echo checked: $countTotal
 }
 
 function check()
 {
+        let countTotal++
 #       echo -n "${domain}.de "
         tgt=${domain}.de
         thostq=$(host ${tgt} | grep NXDOMAIN | wc -l)
