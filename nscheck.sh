@@ -41,7 +41,19 @@ echo END
 
 function check()
 {
-       echo -n "${domain}.de "
+#       echo -n "${domain}.de "
+        tgt=${domain}.de
+        thostq=$(host ${tgt} | grep NXDOMAIN | wc -l)
+        # echo ${thostq}
+        if [ "${thostq}" -eq "1" ]; then
+                echo .
+                echo ${tgt}
+                # echo $(whois ${tgt}| grep -i "status:" -A1)
+                echo $(whois ${tgt}| grep -i "status: ")
+        else
+                echo -n .
+        fi
+
 }
 
 main
