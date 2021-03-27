@@ -3,6 +3,11 @@
 countTotal=0
 countFree=0
 
+outFile=freedomains.txt
+
+touch ${outFile}
+rm -rf ${outFile}
+
 function main()
 {
 for x1 in {a..z}
@@ -56,6 +61,7 @@ function check()
                 twhoisq=$(whois ${tgt}| grep -i "status: free" | wc -l)
                 if [ "${twhoisq}" -eq "1" ]; then
                     echo -n " ${tgt} "
+                    echo "${tgt}"  >> ${outFile}
                     let countFree++
                 fi
         else
